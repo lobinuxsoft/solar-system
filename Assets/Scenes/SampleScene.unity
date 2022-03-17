@@ -518,5 +518,20 @@ PrefabInstance:
       propertyPath: sunToOrbit
       value: 
       objectReference: {fileID: 622711943}
+    - target: {fileID: 6776521629076243056, guid: 6ab13d6131c3ea24faec0ecfd9f09da8,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6776521629076243056, guid: 6ab13d6131c3ea24faec0ecfd9f09da8,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6776521629076243056, guid: 6ab13d6131c3ea24faec0ecfd9f09da8,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6ab13d6131c3ea24faec0ecfd9f09da8, type: 3}
