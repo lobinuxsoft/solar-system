@@ -26,8 +26,8 @@ public class UniverseSettingsVariable : BaseScriptableVariable
     {
         base.EraseSaveFile();
 
-        gravitationalConstant = 0;
-        physicsTimeStep = 0;
+        gravitationalConstant = 0.0001f;
+        physicsTimeStep = 0.01f;
     }
 }
 

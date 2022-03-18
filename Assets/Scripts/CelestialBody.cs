@@ -6,28 +6,39 @@ public class CelestialBody : MonoBehaviour
     [SerializeField] float surfaceGravity;
     [SerializeField] Vector3 initialVelocity;
 
-    Rigidbody body = default;
+    [SerializeField] UniverseSettingsVariable universeSettings;
 
-    float gravitationalConstant = 0.0001f;
+    Rigidbody body = default;
 
     Transform meshHolder;
 
-    public Vector3 velocity { get; private set; }
-    public float mass { get; private set; }
+    public Vector3 Velocity { get; private set; }
+    public float Mass { get; private set; }
+    public Vector3 Position => body.position;
+    public Vector3 InitialVelocity => initialVelocity;
+    public Rigidbody Body => body;
+
 
     private void Awake()
     {
-        velocity = initialVelocity;
+        Velocity = initialVelocity;
 
         body = GetComponent<Rigidbody>();
-        body.mass = mass;
+        body.mass = Mass;
+        body.useGravity = false;
+        body.isKinematic = true;
     }
 
     private void OnValidate()
     {
-        mass = surfaceGravity * radius / gravitationalConstant;
+        Mass = surfaceGravity * radius  * radius / universeSettings.GravitationalConstant;
         meshHolder = transform.GetChild(0);
         meshHolder.localScale = Vector3.one * radius;
+
+        body = GetComponent<Rigidbody>();
+        body.mass = Mass;
+        body.useGravity = false;
+        body.isKinematic = true;
     }
 
     public void UpdateVelocity(CelestialBody[] allBodies, float timeStep)
@@ -39,23 +50,19 @@ public class CelestialBody : MonoBehaviour
                 float sqrDst = (otherBody.body.position - body.position).sqrMagnitude;
                 Vector3 forceDir = (otherBody.body.position - body.position).normalized;
 
-                Vector3 acceleration = forceDir * gravitationalConstant * otherBody.mass / sqrDst;
-                velocity += acceleration * timeStep;
+                Vector3 acceleration = forceDir * universeSettings.GravitationalConstant * otherBody.Mass / sqrDst;
+                Velocity += acceleration * timeStep;
             }
         }
     }
 
     public void UpdateVelocity(Vector3 acceleration, float timeStep)
     {
-        velocity += acceleration * timeStep;
+        Velocity += acceleration * timeStep;
     }
 
     public void UpdatePosition(float timeStep)
     {
-        body.MovePosition(body.position + velocity * timeStep);
+        body.MovePosition(body.position + Velocity * timeStep);
     }
-
-    public Rigidbody Body => body;
-
-    public Vector3 Position => body.position;
 }
