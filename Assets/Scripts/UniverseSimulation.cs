@@ -1,18 +1,22 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class UniverseSimulation : MonoBehaviour {
 
-    [SerializeField] UniverseSettingsVariable universeSettings;
+    [SerializeField] UniverseSettings universeSettings;
     CelestialBody[] bodies;
     static UniverseSimulation instance;
 
     void Awake () {
 
         bodies = FindObjectsOfType<CelestialBody> ();
+        Time.timeScale = universeSettings.TimeScaleSimulation;
         Time.fixedDeltaTime = universeSettings.PhysicsTimeStep;
         Debug.Log ("Setting fixedDeltaTime to: " + universeSettings.PhysicsTimeStep);
+    }
+
+    private void Update()
+    {
+        if(universeSettings.TimeScaleSimulation != Time.timeScale) Time.timeScale = universeSettings.TimeScaleSimulation;
     }
 
     void FixedUpdate () {

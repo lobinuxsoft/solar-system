@@ -6,7 +6,7 @@ public class CelestialBody : MonoBehaviour
     [SerializeField] float surfaceGravity;
     [SerializeField] Vector3 initialVelocity;
 
-    [SerializeField] UniverseSettingsVariable universeSettings;
+    [SerializeField] UniverseSettings universeSettings;
 
     Rigidbody body = default;
 
@@ -16,6 +16,7 @@ public class CelestialBody : MonoBehaviour
     public float Mass { get; private set; }
     public Vector3 Position => body.position;
     public Vector3 InitialVelocity => initialVelocity;
+    public float Radius => radius;
     public Rigidbody Body => body;
 
 

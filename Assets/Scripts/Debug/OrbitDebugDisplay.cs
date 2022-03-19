@@ -2,11 +2,8 @@
 
 public class OrbitDebugDisplay : MonoBehaviour {
 
-    public int numSteps = 1000;
-    public float timeStep = 0.1f;
-    public bool usePhysicsTimeStep;
-
-    [SerializeField] UniverseSettingsVariable universeSettings;
+    [SerializeField] OrbitDebugDisplaySettings settings;
+    [SerializeField] UniverseSettings universeSettings;
     [SerializeField] CelestialBody centralBody;
  
     bool relativeToBody;
@@ -32,7 +29,7 @@ public class OrbitDebugDisplay : MonoBehaviour {
         // Initialize virtual bodies (don't want to move the actual bodies)
         for (int i = 0; i < virtualBodies.Length; i++) {
             virtualBodies[i] = new VirtualBody (bodies[i]);
-            drawPoints[i] = new Vector3[numSteps];
+            drawPoints[i] = new Vector3[settings.NumSteps];
 
             if (bodies[i] == centralBody && relativeToBody) {
                 referenceFrameIndex = i;
@@ -41,15 +38,15 @@ public class OrbitDebugDisplay : MonoBehaviour {
         }
 
         // Simulate
-        for (int step = 0; step < numSteps; step++) {
+        for (int step = 0; step < settings.NumSteps; step++) {
             Vector3 referenceBodyPosition = (relativeToBody) ? virtualBodies[referenceFrameIndex].position : Vector3.zero;
             // Update velocities
             for (int i = 0; i < virtualBodies.Length; i++) {
-                virtualBodies[i].velocity += CalculateAcceleration (i, virtualBodies) * timeStep;
+                virtualBodies[i].velocity += CalculateAcceleration (i, virtualBodies) * settings.TimeStep;
             }
             // Update positions
             for (int i = 0; i < virtualBodies.Length; i++) {
-                Vector3 newPos = virtualBodies[i].position + virtualBodies[i].velocity * timeStep;
+                Vector3 newPos = virtualBodies[i].position + virtualBodies[i].velocity * settings.TimeStep;
                 virtualBodies[i].position = newPos;
                 if (relativeToBody) {
                     var referenceFrameOffset = referenceBodyPosition - referenceBodyInitialPosition;
@@ -65,11 +62,12 @@ public class OrbitDebugDisplay : MonoBehaviour {
 
         // Draw paths
         for (int bodyIndex = 0; bodyIndex < virtualBodies.Length; bodyIndex++) {
-            var pathColour = bodies[bodyIndex].gameObject.GetComponentInChildren<MeshRenderer> ().sharedMaterial.color; //
+            var pathColour = settings.DebugGradient.Evaluate((float)bodyIndex / (virtualBodies.Length - 1)); //bodies[bodyIndex].gameObject.GetComponentInChildren<MeshRenderer> ().sharedMaterial.color; //
 
             for (int i = 0; i < drawPoints[bodyIndex].Length - 1; i++)
             {
                 Gizmos.color = pathColour;
+                if (i % (settings.NumSteps / 20) == 0) Gizmos.DrawSphere(drawPoints[bodyIndex][i], virtualBodies[bodyIndex].radius / 2); // Visualice spheres for celestial dimensions
                 Gizmos.DrawLine(drawPoints[bodyIndex][i], drawPoints[bodyIndex][i + 1]);
             }
         }
@@ -89,19 +87,21 @@ public class OrbitDebugDisplay : MonoBehaviour {
     }
 
     void OnValidate () {
-        if (usePhysicsTimeStep) {
-            timeStep = universeSettings.PhysicsTimeStep;
+        if (settings.UsePhysicsTimeStep) {
+            settings.TimeStep = universeSettings.PhysicsTimeStep;
         }
     }
 
     class VirtualBody {
         public Vector3 position;
         public Vector3 velocity;
+        public float radius;
         public float mass;
 
         public VirtualBody (CelestialBody body) {
             position = body.transform.position;
             velocity = body.InitialVelocity;
+            radius = body.Radius;
             mass = body.Mass;
         }
     }
