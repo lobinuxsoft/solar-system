@@ -9,11 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f026b861f61e978408f390b547ec9724, type: 3}
-  m_Name: Orbit Debug Display Settings
+  m_Script: {fileID: 11500000, guid: a60e8736f39ffcd4d81863541897f97b, type: 3}
+  m_Name: Orbit Debug Behaviour
   m_EditorClassIdentifier: 
-  redeableFile: 0
-  fileExtention: .save
+  universeSettings: {fileID: 11400000, guid: 7fe208bde54c5aa44af94b9eaac25031, type: 2}
   debugGradient:
     serializedVersion: 2
     key0: {r: 1, g: 0, b: 0, a: 1}
@@ -45,4 +44,3 @@ MonoBehaviour:
     m_NumAlphaKeys: 2
   numSteps: 20000
   timeStep: 1
-  usePhysicsTimeStep: 0

@@ -9,11 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 61cb980a857627f429f298cbfb127619, type: 3}
-  m_Name: Universe Settings
+  m_Script: {fileID: 11500000, guid: 09cc78ff2f0d1674887d3a1db66f07c7, type: 3}
+  m_Name: Universe Behaviour
   m_EditorClassIdentifier: 
-  redeableFile: 0
-  fileExtention: .save
-  timeScaleSimulation: 1
-  gravitationalConstant: 100
-  physicsTimeStep: 0.02
+  universeSettings: {fileID: 11400000, guid: 7fe208bde54c5aa44af94b9eaac25031, type: 2}
+  g: 100

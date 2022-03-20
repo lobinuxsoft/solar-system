@@ -2,20 +2,21 @@
 
 public class CelestialBody : MonoBehaviour
 {
+    [Tooltip("Radius in Kilometers")]
     [SerializeField] float radius;
-    [SerializeField] float surfaceGravity;
     [SerializeField] Vector3 initialVelocity;
+    [SerializeField] float mass;
 
     [SerializeField] UniverseSettings universeSettings;
 
     Rigidbody body = default;
-
-    Transform meshHolder;
+    TrailRenderer trailRenderer = default;
 
     public Vector3 Velocity { get; private set; }
-    public float Mass { get; private set; }
+    public float Mass => mass;
     public Vector3 Position => body.position;
     public Vector3 InitialVelocity => initialVelocity;
+
     public float Radius => radius;
     public Rigidbody Body => body;
 
@@ -23,23 +24,26 @@ public class CelestialBody : MonoBehaviour
     private void Awake()
     {
         Velocity = initialVelocity;
-
         body = GetComponent<Rigidbody>();
         body.mass = Mass;
         body.useGravity = false;
         body.isKinematic = true;
+
+        trailRenderer = GetComponent<TrailRenderer>();
+        trailRenderer.startWidth = radius * .5f;
     }
 
     private void OnValidate()
     {
-        Mass = surfaceGravity * radius  * radius / universeSettings.GravitationalConstant;
-        meshHolder = transform.GetChild(0);
-        meshHolder.localScale = Vector3.one * radius;
+        transform.localScale = Vector3.one * radius;
 
         body = GetComponent<Rigidbody>();
         body.mass = Mass;
         body.useGravity = false;
         body.isKinematic = true;
+
+        trailRenderer = GetComponent<TrailRenderer>();
+        trailRenderer.startWidth = radius * .5f;
     }
 
     public void UpdateVelocity(CelestialBody[] allBodies, float timeStep)
