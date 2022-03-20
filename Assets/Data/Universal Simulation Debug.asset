@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a60e8736f39ffcd4d81863541897f97b, type: 3}
-  m_Name: Orbit Debug Behaviour
+  m_Name: Universal Simulation Debug
   m_EditorClassIdentifier: 
   universeSettings: {fileID: 11400000, guid: 7fe208bde54c5aa44af94b9eaac25031, type: 2}
   debugGradient:
@@ -42,5 +42,5 @@ MonoBehaviour:
     m_Mode: 0
     m_NumColorKeys: 6
     m_NumAlphaKeys: 2
-  numSteps: 20000
+  numSteps: 3000
   timeStep: 1

@@ -2,14 +2,14 @@
 
 public partial class OrbitDebugDisplay : MonoBehaviour
 {
-    [SerializeField] OrbitDebugBehaviour orbitDebugBehaviour;
+    [SerializeField] UniverseSimulationDebugBase orbitDebugBehaviour;
     [SerializeField] CelestialBody centralBody;
 
     private void OnDrawGizmos()
     {
         if (!Application.isPlaying)
         {
-            orbitDebugBehaviour.DrawOrbits(centralBody);
+            orbitDebugBehaviour.DebugDraw(centralBody);
         }
     }
 }

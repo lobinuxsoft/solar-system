@@ -1,23 +1,14 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "New Orbit Debug Behaviour", menuName = "Lobby Tools/ Orbit Debug Displayer/ Orbit Debug Behaviour")]
-public class OrbitDebugBehaviour : ScriptableObject
+[CreateAssetMenu(fileName = "New Universal Simulation Debug", menuName = "Lobby Tools/ Orbit Debug Display/ Universal Simulation Debug")]
+public class UniverseSimulationDebug : UniverseSimulationDebugBase
 {
-    [SerializeField] UniverseSettings universeSettings;
-    [SerializeField] Gradient debugGradient;
-    [SerializeField, Range(1, 20000)] int numSteps = 1000;
-    [SerializeField] float timeStep = 0.1f;
-
-    bool relativeToBody;
-
-    public void DrawOrbits(CelestialBody centralBody)
+    
+    public override void DebugDraw(CelestialBody centralBody)
     {
-
         relativeToBody = centralBody ? true : false;
 
         CelestialBody[] bodies = FindObjectsOfType<CelestialBody>();
-
-        CalculateInitialVelocity(ref bodies);
 
         var virtualBodies = new VirtualBody[bodies.Length];
         var drawPoints = new Vector3[bodies.Length][];
@@ -75,25 +66,6 @@ public class OrbitDebugBehaviour : ScriptableObject
                 Gizmos.color = pathColour;
                 if (i % (numSteps / 20) == 0) Gizmos.DrawSphere(drawPoints[bodyIndex][i], virtualBodies[bodyIndex].radius / 2); // Visualice spheres for celestial dimensions
                 Gizmos.DrawLine(drawPoints[bodyIndex][i], drawPoints[bodyIndex][i + 1]);
-            }
-        }
-    }
-
-    void CalculateInitialVelocity(ref CelestialBody[] celestials)
-    {
-        foreach (CelestialBody a in celestials)
-        {
-            a.Body.velocity = Vector3.zero;
-
-            foreach (CelestialBody b in celestials)
-            {
-                if (!a.Equals(b))
-                {
-                    float r = Vector3.Distance(a.Position, b.Position);
-                    a.transform.LookAt(b.transform);
-
-                    a.Body.velocity += a.transform.right * Mathf.Sqrt((universeSettings.GravitationalConstant * b.Mass) / r);
-                }
             }
         }
     }
