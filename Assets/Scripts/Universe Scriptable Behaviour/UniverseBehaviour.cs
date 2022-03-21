@@ -19,7 +19,8 @@ public class UniverseBehaviour : ScriptableObject
 
     public void UpdateBehaviour()
     {
-        if (universeSettings.TimeScaleSimulation != Time.timeScale) Time.timeScale = universeSettings.TimeScaleSimulation;
+        if (universeSettings.TimeScaleSimulation != Time.timeScale) 
+            Time.timeScale = universeSettings.TimeScaleSimulation;
 
         Gravity();
     }

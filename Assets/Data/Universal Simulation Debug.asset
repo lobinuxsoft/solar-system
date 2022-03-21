@@ -42,5 +42,5 @@ MonoBehaviour:
     m_Mode: 0
     m_NumColorKeys: 6
     m_NumAlphaKeys: 2
-  numSteps: 3000
+  numSteps: 8633
   timeStep: 1

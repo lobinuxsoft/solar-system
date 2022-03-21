@@ -3,7 +3,7 @@ using System.IO;
 using System.Text;
 using UnityEngine;
 
-public class BaseScriptableVariable : ScriptableObject
+public abstract class BaseScriptableVariable : ScriptableObject
 {
     [SerializeField] bool redeableFile = false;
     [SerializeField] protected string fileExtention = ".save";
@@ -15,12 +15,12 @@ public class BaseScriptableVariable : ScriptableObject
     /// <summary>
     /// Salva datos en un archivo
     /// </summary>
-    public virtual void SaveData() { }
+    public abstract void SaveData();
 
     /// <summary>
     /// Cargar datos de un archivo
     /// </summary>
-    public virtual void LoadData() { }
+    public abstract void LoadData();
 
     /// <summary>
     /// Funcion generica para guardar datos.

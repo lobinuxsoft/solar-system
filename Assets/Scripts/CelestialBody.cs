@@ -31,6 +31,7 @@ public class CelestialBody : MonoBehaviour
 
         trailRenderer = GetComponent<TrailRenderer>();
         trailRenderer.startWidth = radius * .5f;
+        trailRenderer.enabled = true;
     }
 
     private void OnValidate()
@@ -44,6 +45,7 @@ public class CelestialBody : MonoBehaviour
 
         trailRenderer = GetComponent<TrailRenderer>();
         trailRenderer.startWidth = radius * .5f;
+        trailRenderer.enabled = false;
     }
 
     public void UpdateVelocity(CelestialBody[] allBodies, float timeStep)
