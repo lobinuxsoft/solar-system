@@ -3,6 +3,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "New Universe Settings", menuName = "Lobby Tools/ Scriptable Variables/ Universe Settings")]
 public class UniverseSettings : BaseScriptableVariable
 {
+    public const float TAU = 6.28318530718f;
     const float minTimescale = .25f;
     const float maxTimescale = 40f;
 
@@ -10,7 +11,15 @@ public class UniverseSettings : BaseScriptableVariable
     [SerializeField] float gravitationalConstant = 0.0001f;
     [SerializeField] float physicsTimeStep = 0.01f;
 
-    public float TimeScaleSimulation { get { return timeScaleSimulation; } set { timeScaleSimulation = Mathf.Clamp(value, minTimescale, maxTimescale); } }
+    public float TimeScaleSimulation 
+    {
+        get { return timeScaleSimulation; } 
+        set 
+        { 
+            timeScaleSimulation = Mathf.Clamp(value, minTimescale, maxTimescale);
+            Time.timeScale = timeScaleSimulation;
+        }
+    }
     public float GravitationalConstant => gravitationalConstant;
     public float PhysicsTimeStep => physicsTimeStep;
 
@@ -41,6 +50,13 @@ public class UniverseSettings : BaseScriptableVariable
         gravitationalConstant = 0.0001f;
         physicsTimeStep = 0.01f;
     }
+
+#if UNITY_EDITOR
+    private void OnValidate()
+    {
+        TimeScaleSimulation = timeScaleSimulation;
+    }
+#endif
 }
 
 public struct UniverseSettingsStruct

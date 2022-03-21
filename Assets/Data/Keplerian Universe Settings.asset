@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 61cb980a857627f429f298cbfb127619, type: 3}
-  m_Name: Universe Settings
+  m_Name: Keplerian Universe Settings
   m_EditorClassIdentifier: 
   redeableFile: 0
   fileExtention: .save
   timeScaleSimulation: 1
-  gravitationalConstant: 100
+  gravitationalConstant: 6
   physicsTimeStep: 0.02

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a60e8736f39ffcd4d81863541897f97b, type: 3}
   m_Name: Universal Simulation Debug
   m_EditorClassIdentifier: 
-  universeSettings: {fileID: 11400000, guid: 7fe208bde54c5aa44af94b9eaac25031, type: 2}
+  universeSettings: {fileID: 11400000, guid: f3830192e1572944db97cbf6bc5a0e74, type: 2}
   debugGradient:
     serializedVersion: 2
     key0: {r: 1, g: 0, b: 0, a: 1}
