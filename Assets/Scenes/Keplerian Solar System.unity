@@ -43,7 +43,7 @@ RenderSettings:
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
-  serializedVersion: 12
+  serializedVersion: 11
   m_GIWorkflowMode: 0
   m_GISettings:
     serializedVersion: 2
@@ -98,8 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_LightingSettings: {fileID: 4890085278179872738, guid: b5a604372d2389848b79bf38d95b9243,
-    type: 2}
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -119,8 +118,6 @@ NavMeshSettings:
     manualTileSize: 0
     tileSize: 256
     accuratePlacement: 0
-    maxJobWorkers: 0
-    preserveTilesOutsideBounds: 0
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
@@ -158,12 +155,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   settings: {fileID: 11400000, guid: 7fe208bde54c5aa44af94b9eaac25031, type: 2}
-  semiMajorAxis: 1524
-  eccentricity: 0.093
-  inclination: 0.03
-  longitudeOfAcendingNode: 0
-  argumentOfPeriapsis: 0
-  meanLongitude: 0
+  keplerianSettings: {fileID: 0}
   referenceBody: {fileID: 6940413002769913361}
   meanAnomaly: 0
   accuracyTolerance: 0.000001
@@ -221,7 +213,6 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
-  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -246,7 +237,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!33 &55695061
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -303,23 +293,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   settings: {fileID: 11400000, guid: 7fe208bde54c5aa44af94b9eaac25031, type: 2}
-  semiMajorAxis: 1000
-  eccentricity: 0.017
-  inclination: 0
-  longitudeOfAcendingNode: 0
-  argumentOfPeriapsis: 0
-  meanLongitude: 0
+  keplerianSettings: {fileID: 11400000, guid: 25daad2fefca8d64290e258b9d38f7e2, type: 2}
   referenceBody: {fileID: 6940413002769913361}
   meanAnomaly: 0
   accuracyTolerance: 0.000001
   maxIterations: 5
   mu: 1800000
-  n: 0.042426407
+  n: 0.47434163
   cosLOAN: 1
   sinLOAN: 0
   sinI: 0
   cosI: 1
-  trueAnomalyConstant: 1.017147
+  trueAnomalyConstant: 1
   orbitColor: {r: 0, g: 1, b: 0.48795986, a: 1}
   orbitResolution: 50
 --- !u!54 &336896184
@@ -366,7 +351,6 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
-  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -391,7 +375,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!33 &336896187
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -407,13 +390,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 336896180}
-  m_LocalRotation: {x: 0.20364177, y: 0, z: 0, w: 0.97904545}
-  m_LocalPosition: {x: 983, y: 0, z: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 200, y: 0, z: 0}
   m_LocalScale: {x: 6.3, y: 6.3, z: 6.3}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 6
-  m_LocalEulerAnglesHint: {x: 23.5, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &634167835
 GameObject:
   m_ObjectHideFlags: 0
@@ -563,12 +546,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   settings: {fileID: 11400000, guid: 7fe208bde54c5aa44af94b9eaac25031, type: 2}
-  semiMajorAxis: 387
-  eccentricity: 0.206
-  inclination: 0.12
-  longitudeOfAcendingNode: 0
-  argumentOfPeriapsis: 0
-  meanLongitude: 0
+  keplerianSettings: {fileID: 0}
   referenceBody: {fileID: 6940413002769913361}
   meanAnomaly: 0
   accuracyTolerance: 0.000001
@@ -626,7 +604,6 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
-  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -651,7 +628,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!33 &1032937591
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -708,12 +684,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   settings: {fileID: 11400000, guid: 7fe208bde54c5aa44af94b9eaac25031, type: 2}
-  semiMajorAxis: 723
-  eccentricity: 0.007
-  inclination: 0.06
-  longitudeOfAcendingNode: 0
-  argumentOfPeriapsis: 0
-  meanLongitude: 0
+  keplerianSettings: {fileID: 0}
   referenceBody: {fileID: 6940413002769913361}
   meanAnomaly: 0
   accuracyTolerance: 0.000001
@@ -771,7 +742,6 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
-  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -796,7 +766,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!33 &1250225371
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -1086,14 +1055,12 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1
   m_VolumeTrigger: {fileID: 0}
-  m_VolumeFrameworkUpdateModeOption: 2
   m_RenderPostProcessing: 1
   m_Antialiasing: 1
   m_AntialiasingQuality: 2
   m_StopNaN: 0
   m_Dithering: 0
   m_ClearDepth: 1
-  m_AllowXRRendering: 1
   m_RequiresDepthTexture: 0
   m_RequiresColorTexture: 0
   m_Version: 2

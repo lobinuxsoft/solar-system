@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   redeableFile: 0
   fileExtention: .save
-  timeScaleSimulation: 40
+  timeScaleSimulation: 6.3
   gravitationalConstant: 100
   physicsTimeStep: 0.02

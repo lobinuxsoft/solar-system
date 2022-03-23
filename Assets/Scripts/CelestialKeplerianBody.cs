@@ -11,15 +11,11 @@ public partial class CelestialKeplerianBody : MonoBehaviour
     [SerializeField] UniverseSettings settings;
     [Space]
 
-    [Header("Orbital Keplerian Parameters")]
-    
-    [SerializeField,Tooltip("a - size")] float semiMajorAxis = 20f;
-    [SerializeField, Tooltip("e - shape")][Range(0f, 0.99f)] float eccentricity;
-    [SerializeField, Tooltip("i - tilt")][Range(0f, Math.TAU)] float inclination = 0f;
-    [SerializeField, Tooltip("n - swivel")][Range(0f, Math.TAU)] float longitudeOfAcendingNode;
-    [SerializeField, Tooltip("w - position")][Range(0f, Math.TAU)] float argumentOfPeriapsis;
-    [SerializeField, Tooltip("L - offset")] float meanLongitude;
-    [SerializeField, Tooltip("Reference boy for calculate the orbit")] Rigidbody referenceBody;
+    [Header("Keplerian data for orbit calculation")]
+    [SerializeField] KeplerianBodySettings keplerianSettings = default;
+    [Space]
+
+    [SerializeField, Tooltip("Reference body for calculate the orbit")] Rigidbody referenceBody;
     [SerializeField] float meanAnomaly;
     [Space]
 
@@ -32,13 +28,21 @@ public partial class CelestialKeplerianBody : MonoBehaviour
     [HideInInspector] [SerializeField] float n, cosLOAN, sinLOAN, sinI, cosI, trueAnomalyConstant;
 
     Rigidbody body = default;
-
-    private void OnValidate() => orbitalPoints.Clear();
+    MeshRenderer meshRenderer = default;
 
     void Awake()
     {
         body = GetComponent<Rigidbody>();
         body.useGravity = false;
+
+        meshRenderer = GetComponent<MeshRenderer>();
+
+        if (keplerianSettings)
+        {
+            transform.localScale = Vector3.one * keplerianSettings.PlanetRadius;
+            meshRenderer.material = keplerianSettings.PlanetMaterial;
+            body.mass = keplerianSettings.PlanetMass;
+        }
 
         if(referenceBody) CalculateSemiConstants();
     }
@@ -72,12 +76,12 @@ public partial class CelestialKeplerianBody : MonoBehaviour
     public void CalculateSemiConstants()
     {
         mu = settings.GravitationalConstant * referenceBody.mass;
-        n = Mathf.Sqrt(mu / Mathf.Pow(semiMajorAxis, 3));
-        trueAnomalyConstant = Mathf.Sqrt((1 + eccentricity) / (1 - eccentricity));
-        cosLOAN = Mathf.Cos(longitudeOfAcendingNode);
-        sinLOAN = Mathf.Sin(longitudeOfAcendingNode);
-        cosI = Mathf.Cos(inclination);
-        sinI = Mathf.Sin(inclination);
+        n = Mathf.Sqrt(mu / Mathf.Pow(keplerianSettings.SemiMajorAxis, 3));
+        trueAnomalyConstant = Mathf.Sqrt((1 + keplerianSettings.Eccentricity) / (1 - keplerianSettings.Eccentricity));
+        cosLOAN = Mathf.Cos(keplerianSettings.LongitudeOfAcendingNode);
+        sinLOAN = Mathf.Sin(keplerianSettings.LongitudeOfAcendingNode);
+        cosI = Mathf.Cos(keplerianSettings.Inclination);
+        sinI = Mathf.Sin(keplerianSettings.Inclination);
     }
 
     void Update()
@@ -88,23 +92,23 @@ public partial class CelestialKeplerianBody : MonoBehaviour
         {
             CalculateSemiConstants();
 
-            meanAnomaly = (float)(n * (Time.time - meanLongitude));
+            meanAnomaly = (float)(n * (Time.time - keplerianSettings.MeanLongitude));
 
             float E1 = meanAnomaly;   //initial guess
             float difference = 1f;
             for (int i = 0; difference > accuracyTolerance && i < maxIterations; i++)
             {
                 float E0 = E1;
-                E1 = E0 - F(E0, eccentricity, meanAnomaly) / DF(E0, eccentricity);
+                E1 = E0 - F(E0, keplerianSettings.Eccentricity, meanAnomaly) / DF(E0, keplerianSettings.Eccentricity);
                 difference = Mathf.Abs(E1 - E0);
             }
             float EccentricAnomaly = E1;
 
             float trueAnomaly = 2 * Mathf.Atan(trueAnomalyConstant * Mathf.Tan(EccentricAnomaly / 2));
-            float distance = semiMajorAxis * (1 - eccentricity * Mathf.Cos(EccentricAnomaly));
+            float distance = keplerianSettings.SemiMajorAxis * (1 - keplerianSettings.Eccentricity * Mathf.Cos(EccentricAnomaly));
 
-            float cosAOPPlusTA = Mathf.Cos(argumentOfPeriapsis + trueAnomaly);
-            float sinAOPPlusTA = Mathf.Sin(argumentOfPeriapsis + trueAnomaly);
+            float cosAOPPlusTA = Mathf.Cos(keplerianSettings.ArgumenOfPeriapsis + trueAnomaly);
+            float sinAOPPlusTA = Mathf.Sin(keplerianSettings.ArgumenOfPeriapsis + trueAnomaly);
 
             float x = distance * ((cosLOAN * cosAOPPlusTA) - (sinLOAN * sinAOPPlusTA * cosI));
             float z = distance * ((sinLOAN * cosAOPPlusTA) + (cosLOAN * sinAOPPlusTA * cosI));      //Switching z and y to be aligned with xz not xy
@@ -115,6 +119,7 @@ public partial class CelestialKeplerianBody : MonoBehaviour
     }
 
 #if UNITY_EDITOR
+
     [Space, Header("Editor Settings")]
     [SerializeField] Color orbitColor = Color.white;
     [SerializeField] int orbitResolution = 50;
@@ -122,6 +127,10 @@ public partial class CelestialKeplerianBody : MonoBehaviour
 
     private void OnDrawGizmos()
     {
+        if (!keplerianSettings) return;
+
+        orbitalPoints.Clear();
+
         if (orbitalPoints.Count == 0)
         {
             if (referenceBody == null)
@@ -131,6 +140,7 @@ public partial class CelestialKeplerianBody : MonoBehaviour
             }
 
             CalculateSemiConstants();
+
             Vector3 pos = referenceBody.position;
             float orbitFraction = 1f / orbitResolution;
 
@@ -139,24 +149,34 @@ public partial class CelestialKeplerianBody : MonoBehaviour
                 float EccentricAnomaly = i * orbitFraction * Math.TAU;
 
                 float trueAnomaly = 2 * Mathf.Atan(trueAnomalyConstant * Mathf.Tan(EccentricAnomaly / 2));
-                float distance = semiMajorAxis * (1 - eccentricity * Mathf.Cos(EccentricAnomaly));
+                float distance = keplerianSettings.SemiMajorAxis * (1 - keplerianSettings.Eccentricity * Mathf.Cos(EccentricAnomaly));
 
-                float cosAOPPlusTA = Mathf.Cos(argumentOfPeriapsis + trueAnomaly);
-                float sinAOPPlusTA = Mathf.Sin(argumentOfPeriapsis + trueAnomaly);
+                float cosAOPPlusTA = Mathf.Cos(keplerianSettings.ArgumenOfPeriapsis + trueAnomaly);
+                float sinAOPPlusTA = Mathf.Sin(keplerianSettings.ArgumenOfPeriapsis + trueAnomaly);
 
                 float x = distance * ((cosLOAN * cosAOPPlusTA) - (sinLOAN * sinAOPPlusTA * cosI));
                 float z = distance * ((sinLOAN * cosAOPPlusTA) + (cosLOAN * sinAOPPlusTA * cosI));
                 float y = distance * (sinI * sinAOPPlusTA);
 
-                float meanAnomaly = EccentricAnomaly - eccentricity * Mathf.Sin(EccentricAnomaly);
+                float meanAnomaly = EccentricAnomaly - keplerianSettings.Eccentricity * Mathf.Sin(EccentricAnomaly);
 
                 orbitalPoints.Add(pos + new Vector3(x, y, z));
             }
         }
+
         Handles.color = orbitColor;
         Handles.DrawAAPolyLine(orbitalPoints.ToArray());
-        
-        if(!Application.isPlaying) transform.position = orbitalPoints[0];
+
+        if (!Application.isPlaying)
+        {
+            if (!body) body = GetComponent<Rigidbody>();
+            if (!meshRenderer) meshRenderer = GetComponent<MeshRenderer>(); 
+
+            transform.position = orbitalPoints[0];
+            transform.localScale = Vector3.one * keplerianSettings.PlanetRadius;
+            meshRenderer.material = keplerianSettings.PlanetMaterial;
+            body.mass = keplerianSettings.PlanetMass;
+        }
     }
 #endif
 

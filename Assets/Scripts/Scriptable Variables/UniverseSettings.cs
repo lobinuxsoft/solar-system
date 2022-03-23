@@ -20,6 +20,7 @@ public class UniverseSettings : BaseScriptableVariable
             Time.timeScale = timeScaleSimulation;
         }
     }
+
     public float GravitationalConstant => gravitationalConstant;
     public float PhysicsTimeStep => physicsTimeStep;
 
