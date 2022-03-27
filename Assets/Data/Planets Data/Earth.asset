@@ -16,10 +16,11 @@ MonoBehaviour:
   fileExtention: .save
   planetMaterial: {fileID: 2100000, guid: f2d4cc14f78163a47ae74a76f8714faf, type: 2}
   planetRadius: 6.378
+  orbitColor: {r: 0.3820755, g: 1, b: 0.47922137, a: 1}
   planetMass: 1
   semiMajorAxis: 1000
   eccentricity: 0.017
-  inclination: 6.28
+  inclination: 0
   longitudeOfAcendingNode: 0
   argumentOfPeriapsis: 0
   meanLongitude: 0

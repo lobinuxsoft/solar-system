@@ -15,11 +15,12 @@ MonoBehaviour:
   redeableFile: 1
   fileExtention: .save
   planetMaterial: {fileID: 0}
-  planetRadius: 0
-  planetMass: 0
-  semiMajorAxis: 200
-  eccentricity: 0
-  inclination: 0
+  planetRadius: 1.4
+  orbitColor: {r: 0.7383925, g: 0.3537736, b: 1, a: 1}
+  planetMass: 0.002
+  semiMajorAxis: 39439
+  eccentricity: 0.25
+  inclination: 0.172
   longitudeOfAcendingNode: 0
   argumentOfPeriapsis: 0
   meanLongitude: 0
