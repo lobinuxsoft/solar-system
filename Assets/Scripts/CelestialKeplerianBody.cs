@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using Cinemachine;
 
 #if UNITY_EDITOR
 using UnityEditor;
@@ -9,6 +10,11 @@ using UnityEditor;
 public partial class CelestialKeplerianBody : MonoBehaviour
 {
     [SerializeField] UniverseSettings settings;
+    [Space]
+
+    [Header("Orbital Camera")]
+    [SerializeField] CinemachineVirtualCamera virtualCamera;
+    CinemachineOrbitalTransposer orbitalCam;
     [Space]
 
     [Header("Keplerian data for orbit calculation")]
@@ -30,6 +36,14 @@ public partial class CelestialKeplerianBody : MonoBehaviour
     Rigidbody body = default;
     MeshRenderer meshRenderer = default;
     TrailRenderer trailRenderer = default;
+
+    public CinemachineVirtualCamera VirtualCamera => virtualCamera;
+
+    private void Start()
+    {
+        orbitalCam = virtualCamera.GetCinemachineComponent<CinemachineOrbitalTransposer>();
+        orbitalCam.m_FollowOffset = new Vector3(0, keplerianSettings.PlanetRadius * .4f, keplerianSettings.PlanetRadius * 4);
+    }
 
     public void SetKeplerianBodySettings(KeplerianBodySettings kbs, Rigidbody bodyRef = null)
     {
