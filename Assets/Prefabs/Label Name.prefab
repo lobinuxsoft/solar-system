@@ -164,9 +164,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targetToFollow: {fileID: 0}
-  maxScale: 1
+  maxScale: 0.5
   offset: {x: 0, y: 3, z: 0}
-  maxDistanceToSee: 100000000
+  maxDistanceToSee: 10000000
   onSetTarget:
     m_PersistentCalls:
       m_Calls:
