@@ -23,7 +23,7 @@ RenderSettings:
   m_AmbientSkyColor: {r: 0, g: 0, b: 0, a: 1}
   m_AmbientEquatorColor: {r: 0.114, g: 0.125, b: 0.133, a: 1}
   m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
-  m_AmbientIntensity: 1
+  m_AmbientIntensity: 2
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.13296545, g: 0.19145328, b: 0.33962262, a: 1}
   m_SkyboxMaterial: {fileID: 2100000, guid: 69e10e886d52d20478f9ed5424126be8, type: 2}
@@ -33,7 +33,7 @@ RenderSettings:
   m_HaloTexture: {fileID: 0}
   m_SpotCookie: {fileID: 10001, guid: 0000000000000000e000000000000000, type: 0}
   m_DefaultReflectionMode: 0
-  m_DefaultReflectionResolution: 128
+  m_DefaultReflectionResolution: 256
   m_ReflectionBounces: 1
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
@@ -43,7 +43,7 @@ RenderSettings:
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
-  serializedVersion: 11
+  serializedVersion: 12
   m_GIWorkflowMode: 0
   m_GISettings:
     serializedVersion: 2
@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 0
+  m_LightingSettings: {fileID: 2106586614}
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -118,6 +118,8 @@ NavMeshSettings:
     manualTileSize: 0
     tileSize: 256
     accuratePlacement: 0
+    maxJobWorkers: 0
+    preserveTilesOutsideBounds: 0
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
@@ -155,18 +157,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   settings: {fileID: 11400000, guid: 7fe208bde54c5aa44af94b9eaac25031, type: 2}
-  keplerianSettings: {fileID: 0}
+  keplerianSettings: {fileID: 11400000, guid: 70fbf77b97dc4fc479c410006930d313, type: 2}
   referenceBody: {fileID: 6940413002769913361}
   meanAnomaly: 0
   accuracyTolerance: 0.000001
   maxIterations: 5
   mu: 1800000
-  n: 0.022550637
+  n: 0.47434163
   cosLOAN: 1
   sinLOAN: 0
-  sinI: 0.0299955
-  cosI: 0.99955004
-  trueAnomalyConstant: 1.0977576
+  sinI: 0
+  cosI: 1
+  trueAnomalyConstant: 1
   orbitColor: {r: 1, g: 0, b: 0, a: 1}
   orbitResolution: 400
 --- !u!54 &55695058
@@ -177,7 +179,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 55695056}
   serializedVersion: 2
-  m_Mass: 0.11
+  m_Mass: 1
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 0
@@ -213,10 +215,11 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 17abb15c7b90aff428db5b1c604cdf70, type: 2}
+  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -237,6 +240,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!33 &55695061
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -253,8 +257,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 55695056}
   m_LocalRotation: {x: 0.21814322, y: 0, z: 0, w: 0.9759168}
-  m_LocalPosition: {x: 1382.268, y: 0, z: 0}
-  m_LocalScale: {x: 3.3895, y: 3.3895, z: 3.3895}
+  m_LocalPosition: {x: 200, y: 0, z: 0}
+  m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 7
@@ -299,12 +303,12 @@ MonoBehaviour:
   accuracyTolerance: 0.000001
   maxIterations: 5
   mu: 1800000
-  n: 0.47434163
+  n: 0.042426407
   cosLOAN: 1
   sinLOAN: 0
-  sinI: 0
-  cosI: 1
-  trueAnomalyConstant: 1
+  sinI: -0.003185092
+  cosI: 0.99999493
+  trueAnomalyConstant: 1.017147
   orbitColor: {r: 0, g: 1, b: 0.48795986, a: 1}
   orbitResolution: 50
 --- !u!54 &336896184
@@ -351,10 +355,11 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 17abb15c7b90aff428db5b1c604cdf70, type: 2}
+  - {fileID: 2100000, guid: f2d4cc14f78163a47ae74a76f8714faf, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -375,6 +380,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!33 &336896187
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -391,8 +397,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 336896180}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 200, y: 0, z: 0}
-  m_LocalScale: {x: 6.3, y: 6.3, z: 6.3}
+  m_LocalPosition: {x: 983, y: 0, z: 0}
+  m_LocalScale: {x: 6.378, y: 6.378, z: 6.378}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 6
@@ -456,7 +462,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 634167835}
-  m_LocalRotation: {x: 0.20985529, y: 0.000000016823238, z: -0.0000000036108498, w: 0.9777325}
+  m_LocalRotation: {x: 0.2098553, y: -0.00000001682324, z: 0.0000000036108505, w: 0.9777325}
   m_LocalPosition: {x: 0, y: 180, z: -400}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -546,18 +552,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   settings: {fileID: 11400000, guid: 7fe208bde54c5aa44af94b9eaac25031, type: 2}
-  keplerianSettings: {fileID: 0}
+  keplerianSettings: {fileID: 11400000, guid: 249e1966994f29b43a6d379829b57232, type: 2}
   referenceBody: {fileID: 6940413002769913361}
   meanAnomaly: 0
   accuracyTolerance: 0.000001
   maxIterations: 5
   mu: 1800000
-  n: 0.17622593
+  n: 0.47434163
   cosLOAN: 1
   sinLOAN: 0
-  sinI: 0.119712204
-  cosI: 0.99280864
-  trueAnomalyConstant: 1.2324332
+  sinI: 0
+  cosI: 1
+  trueAnomalyConstant: 1
   orbitColor: {r: 1, g: 0.21666667, b: 0, a: 1}
   orbitResolution: 50
 --- !u!54 &1032937588
@@ -568,7 +574,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1032937586}
   serializedVersion: 2
-  m_Mass: 0.06
+  m_Mass: 1
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 0
@@ -604,10 +610,11 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 17abb15c7b90aff428db5b1c604cdf70, type: 2}
+  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -628,6 +635,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!33 &1032937591
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -644,8 +652,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1032937586}
   m_LocalRotation: {x: 0.2588191, y: 0, z: 0, w: 0.9659258}
-  m_LocalPosition: {x: 307.278, y: 0, z: 0}
-  m_LocalScale: {x: 2.4, y: 2.4, z: 2.4}
+  m_LocalPosition: {x: 200, y: 0, z: 0}
+  m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 4
@@ -684,18 +692,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   settings: {fileID: 11400000, guid: 7fe208bde54c5aa44af94b9eaac25031, type: 2}
-  keplerianSettings: {fileID: 0}
+  keplerianSettings: {fileID: 11400000, guid: 0d61c29d70f0e4d4e89f0a1c9863ca9e, type: 2}
   referenceBody: {fileID: 6940413002769913361}
   meanAnomaly: 0
   accuracyTolerance: 0.000001
   maxIterations: 5
   mu: 1800000
-  n: 0.069012664
+  n: 0.47434163
   cosLOAN: 1
   sinLOAN: 0
-  sinI: 0.059964005
-  cosI: 0.99820054
-  trueAnomalyConstant: 1.0070246
+  sinI: 0
+  cosI: 1
+  trueAnomalyConstant: 1
   orbitColor: {r: 0, g: 0.5999999, b: 1, a: 1}
   orbitResolution: 50
 --- !u!54 &1250225368
@@ -706,7 +714,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1250225366}
   serializedVersion: 2
-  m_Mass: 0.82
+  m_Mass: 1
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 0
@@ -742,10 +750,11 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 17abb15c7b90aff428db5b1c604cdf70, type: 2}
+  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -766,6 +775,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!33 &1250225371
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -782,8 +792,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1250225366}
   m_LocalRotation: {x: 0.99965733, y: 0, z: 0, w: 0.026177015}
-  m_LocalPosition: {x: 717.939, y: 0, z: 0}
-  m_LocalScale: {x: 6.05, y: 6.05, z: 6.05}
+  m_LocalPosition: {x: 200, y: 0, z: 0}
+  m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 5
@@ -1026,7 +1036,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1687258581}
-  m_LocalRotation: {x: 0.20985529, y: 0.000000016823238, z: -0.0000000036108498, w: 0.9777325}
+  m_LocalRotation: {x: 0.2098553, y: -0.00000001682324, z: 0.0000000036108505, w: 0.9777325}
   m_LocalPosition: {x: 0, y: 180, z: -400}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -1055,15 +1065,78 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1
   m_VolumeTrigger: {fileID: 0}
+  m_VolumeFrameworkUpdateModeOption: 2
   m_RenderPostProcessing: 1
   m_Antialiasing: 1
   m_AntialiasingQuality: 2
   m_StopNaN: 0
   m_Dithering: 0
   m_ClearDepth: 1
+  m_AllowXRRendering: 1
   m_RequiresDepthTexture: 0
   m_RequiresColorTexture: 0
   m_Version: 2
+--- !u!850595691 &2106586614
+LightingSettings:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Settings.lighting
+  serializedVersion: 3
+  m_GIWorkflowMode: 0
+  m_EnableBakedLightmaps: 1
+  m_EnableRealtimeLightmaps: 0
+  m_RealtimeEnvironmentLighting: 0
+  m_BounceScale: 1
+  m_AlbedoBoost: 1
+  m_IndirectOutputScale: 1
+  m_UsingShadowmask: 0
+  m_BakeBackend: 2
+  m_LightmapMaxSize: 512
+  m_BakeResolution: 32
+  m_Padding: 2
+  m_TextureCompression: 1
+  m_AO: 1
+  m_AOMaxDistance: 1
+  m_CompAOExponent: 1
+  m_CompAOExponentDirect: 0.3
+  m_ExtractAO: 0
+  m_MixedBakeMode: 0
+  m_LightmapsBakeMode: 0
+  m_FilterMode: 1
+  m_LightmapParameters: {fileID: 15204, guid: 0000000000000000f000000000000000, type: 0}
+  m_ExportTrainingData: 0
+  m_TrainingDataDestination: TrainingData
+  m_RealtimeResolution: 2
+  m_ForceWhiteAlbedo: 0
+  m_ForceUpdates: 0
+  m_FinalGather: 0
+  m_FinalGatherRayCount: 256
+  m_FinalGatherFiltering: 1
+  m_PVRCulling: 1
+  m_PVRSampling: 1
+  m_PVRDirectSampleCount: 32
+  m_PVRSampleCount: 256
+  m_PVREnvironmentSampleCount: 256
+  m_PVREnvironmentReferencePointCount: 2048
+  m_LightProbeSampleCountMultiplier: 4
+  m_PVRBounces: 2
+  m_PVRMinBounces: 2
+  m_PVREnvironmentMIS: 0
+  m_PVRFilteringMode: 2
+  m_PVRDenoiserTypeDirect: 0
+  m_PVRDenoiserTypeIndirect: 0
+  m_PVRDenoiserTypeAO: 0
+  m_PVRFilterTypeDirect: 0
+  m_PVRFilterTypeIndirect: 0
+  m_PVRFilterTypeAO: 0
+  m_PVRFilteringGaussRadiusDirect: 1
+  m_PVRFilteringGaussRadiusIndirect: 5
+  m_PVRFilteringGaussRadiusAO: 2
+  m_PVRFilteringAtrousPositionSigmaDirect: 0.548
+  m_PVRFilteringAtrousPositionSigmaIndirect: 2
+  m_PVRFilteringAtrousPositionSigmaAO: 1
 --- !u!1001 &3171465463644270428
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1130,6 +1203,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3171465463601382658, guid: dc390f52b7bd09540ae29fcf66a287bb,
+        type: 3}
+      propertyPath: m_Range
+      value: 10000000
+      objectReference: {fileID: 0}
+    - target: {fileID: 3171465463601382658, guid: dc390f52b7bd09540ae29fcf66a287bb,
+        type: 3}
+      propertyPath: m_Intensity
+      value: 10000000
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dc390f52b7bd09540ae29fcf66a287bb, type: 3}
