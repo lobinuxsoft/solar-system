@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   redeableFile: 1
   fileExtention: .save
-  planetMaterial: {fileID: 0}
+  planetMaterial: {fileID: 2100000, guid: a5a703eb410712f4e9cd1772990b341d, type: 2}
   planetRadius: 2.439
   orbitColor: {r: 0.36320752, g: 0.792015, b: 1, a: 1}
   planetMass: 0.06

@@ -8,7 +8,7 @@ public class CelestialSelector : MonoBehaviour
     [SerializeField] Transform celestialsContainer;
     [SerializeField] Button buttonPref;
     [SerializeField] Transform buttonContainer;
-    [SerializeField] CinemachineVirtualCamera defautVCam;
+    [SerializeField] CinemachineVirtualCamera defaultVCam;
     CinemachineVirtualCamera vcam;
 
     public void CreateSelector()
@@ -35,10 +35,11 @@ public class CelestialSelector : MonoBehaviour
 
         if(index < 0)
         {
-            defautVCam.gameObject.SetActive(true);
+            defaultVCam.gameObject.SetActive(true);
 
             if (vcam) vcam.gameObject.SetActive(false);
-            vcam = defautVCam;
+
+            vcam = defaultVCam;
         }
         else
         {
@@ -47,6 +48,7 @@ public class CelestialSelector : MonoBehaviour
             tempCam.gameObject.SetActive(true);
 
             if (vcam) vcam.gameObject.SetActive(false);
+
             vcam = tempCam;
         }
     }

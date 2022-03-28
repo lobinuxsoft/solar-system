@@ -551,7 +551,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 634167835}
-  m_LocalRotation: {x: 0.08892883, y: -0.0000000042845523, z: 3.8253586e-10, w: 0.996038}
+  m_LocalRotation: {x: 0.08892883, y: 0.0000000042845523, z: -3.8253586e-10, w: 0.996038}
   m_LocalPosition: {x: 0, y: 180, z: -1000}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -1058,7 +1058,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1687258581}
-  m_LocalRotation: {x: 0.08892883, y: -0.0000000042845523, z: 3.8253586e-10, w: 0.996038}
+  m_LocalRotation: {x: 0.08892883, y: 0.0000000042845523, z: -3.8253586e-10, w: 0.996038}
   m_LocalPosition: {x: 0, y: 180, z: -1000}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -1216,7 +1216,7 @@ MonoBehaviour:
   buttonPref: {fileID: 6447243175603151476, guid: f5654a3b30d472c48beef732e3836d8e,
     type: 3}
   buttonContainer: {fileID: 120337277}
-  defautVCam: {fileID: 634167836}
+  defaultVCam: {fileID: 634167836}
 --- !u!850595691 &2106586614
 LightingSettings:
   m_ObjectHideFlags: 0
