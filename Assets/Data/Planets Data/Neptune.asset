@@ -16,7 +16,7 @@ MonoBehaviour:
   fileExtention: .save
   planetMaterial: {fileID: 0}
   planetRadius: 24.75
-  orbitColor: {r: 0, g: 0.03425646, b: 1, a: 1}
+  orbitColor: {r: 0, g: 0.03425646, b: 1, a: 0.19607843}
   planetMass: 14.6
   semiMajorAxis: 30058
   eccentricity: 0.009
@@ -24,3 +24,11 @@ MonoBehaviour:
   longitudeOfAcendingNode: 0
   argumentOfPeriapsis: 0
   meanLongitude: 0
+  planetInfo: Neptune, though slightly smaller than Uranus, is more massive and hence
+    more dense. It radiates more internal heat than Uranus, but not as much as Jupiter
+    or Saturn. Neptune has 14 known satellites. The largest, Triton, is geologically
+    active, with geysers of liquid nitrogen. Triton is the only large satellite with
+    a retrograde orbit, which indicates that it did not form with Neptune, but was
+    probably captured from the Kuiper belt. Neptune is accompanied in its orbit by
+    several minor planets, termed Neptune trojans, that are in 1:1 resonance with
+    it.

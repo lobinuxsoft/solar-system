@@ -1,6 +1,7 @@
 using Cinemachine;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 public class CelestialSelector : MonoBehaviour
@@ -9,6 +10,9 @@ public class CelestialSelector : MonoBehaviour
     [SerializeField] Button buttonPref;
     [SerializeField] Transform buttonContainer;
     [SerializeField] CinemachineVirtualCamera defaultVCam;
+
+    public UnityEvent<int> onPlanetSelected;
+
     CinemachineVirtualCamera vcam;
 
     public void CreateSelector()
@@ -51,5 +55,7 @@ public class CelestialSelector : MonoBehaviour
 
             vcam = tempCam;
         }
+
+        onPlanetSelected?.Invoke(index);
     }
 }

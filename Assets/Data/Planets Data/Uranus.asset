@@ -16,7 +16,7 @@ MonoBehaviour:
   fileExtention: .save
   planetMaterial: {fileID: 0}
   planetRadius: 25.4
-  orbitColor: {r: 0.3820755, g: 1, b: 0.7815717, a: 1}
+  orbitColor: {r: 0.3820755, g: 1, b: 0.7815717, a: 0.19607843}
   planetMass: 14.6
   semiMajorAxis: 19182
   eccentricity: 0.047
@@ -24,3 +24,8 @@ MonoBehaviour:
   longitudeOfAcendingNode: 0
   argumentOfPeriapsis: 0
   meanLongitude: 0
+  planetInfo: Uranus is the lightest of the outer planets. Uniquely among the planets,
+    it orbits the Sun on its side; its axial tilt is over ninety degrees to the ecliptic.
+    It has a much colder core than the other giant planets and radiates very little
+    heat into space. Uranus has 27 known satellites, the largest ones being Titania,
+    Oberon, Umbriel, Ariel, and Miranda.

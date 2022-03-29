@@ -16,7 +16,7 @@ MonoBehaviour:
   fileExtention: .save
   planetMaterial: {fileID: 2100000, guid: 78a646e0975f35f4fb0a9bdab76d5b43, type: 2}
   planetRadius: 71.398
-  orbitColor: {r: 1, g: 0.9815198, b: 0, a: 1}
+  orbitColor: {r: 1, g: 0.9815198, b: 0, a: 0.19607843}
   planetMass: 318
   semiMajorAxis: 5203
   eccentricity: 0.048
@@ -24,3 +24,11 @@ MonoBehaviour:
   longitudeOfAcendingNode: 0
   argumentOfPeriapsis: 0
   meanLongitude: 0
+  planetInfo: 'Jupiter is 2.5 times the mass of all the other planets put together.
+    It is composed largely of hydrogen and helium. Jupiter''s strong internal heat
+    creates semi-permanent features in its atmosphere, such as cloud bands and the
+    Great Red Spot. Jupiter has 80 known satellites. The four largest, Ganymede,
+    Callisto, Io, and Europa, are called the Galilean moons: they show similarities
+    to the terrestrial planets, such as volcanism and internal heating. Ganymede,
+    the largest satellite in the Solar System, is larger than Mercury; Callisto is
+    almost as large.'

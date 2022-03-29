@@ -16,7 +16,7 @@ MonoBehaviour:
   fileExtention: .save
   planetMaterial: {fileID: 2100000, guid: cdde91a336e19f944a15d28e1e1834dd, type: 2}
   planetRadius: 3.394
-  orbitColor: {r: 1, g: 0.33490568, b: 0.33490568, a: 1}
+  orbitColor: {r: 1, g: 0.33490568, b: 0.33490568, a: 0.19607843}
   planetMass: 0.11
   semiMajorAxis: 1524
   eccentricity: 0.093
@@ -24,3 +24,11 @@ MonoBehaviour:
   longitudeOfAcendingNode: 0
   argumentOfPeriapsis: 0
   meanLongitude: 0
+  planetInfo: Mars is smaller than Earth and Venus. It has an atmosphere of mostly
+    carbon dioxide with a surface pressure of 6.1 millibars (roughly 0.6% of that
+    of Earth). Its surface, peppered with vast volcanoes, such as Olympus Mons, and
+    rift valleys, such as Valles Marineris, shows geological activity that may have
+    persisted until as recently as 2 million years ago. Its red colour comes from
+    iron oxide (rust) in its soil. Mars has two tiny natural satellites (Deimos and
+    Phobos) thought to be either captured asteroids, or ejected debris from a massive
+    impact early in Mars's history.

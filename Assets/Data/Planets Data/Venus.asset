@@ -16,7 +16,7 @@ MonoBehaviour:
   fileExtention: .save
   planetMaterial: {fileID: 2100000, guid: 6910fd4b436fe4f4ba0eeaf38dd0e6bb, type: 2}
   planetRadius: 6.051
-  orbitColor: {r: 1, g: 0.3726415, b: 0.77145016, a: 1}
+  orbitColor: {r: 1, g: 0.3726415, b: 0.77145016, a: 0.19607843}
   planetMass: 0.82
   semiMajorAxis: 723
   eccentricity: 0.007
@@ -24,3 +24,12 @@ MonoBehaviour:
   longitudeOfAcendingNode: 0
   argumentOfPeriapsis: 0
   meanLongitude: 0
+  planetInfo: "Venus is close in size to Earth and, like Earth, has a thick silicate
+    mantle around an iron core, a substantial atmosphere, and evidence of internal
+    geological activity. It is much drier than Earth, and its atmosphere is ninety
+    times as dense. Venus has no natural satellites. It is the hottest planet, with
+    surface temperatures over 400 \xB0C, most likely due to the amount of greenhouse
+    gases in the atmosphere. No definitive evidence of current geological activity
+    has been detected on Venus, but it has no magnetic field that would prevent depletion
+    of its substantial atmosphere, which suggests that its atmosphere is being replenished
+    by volcanic eruptions."

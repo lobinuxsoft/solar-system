@@ -16,7 +16,7 @@ MonoBehaviour:
   fileExtention: .save
   planetMaterial: {fileID: 2100000, guid: 17abb15c7b90aff428db5b1c604cdf70, type: 2}
   planetRadius: 69.6
-  orbitColor: {r: 1, g: 0.6416, b: 0, a: 1}
+  orbitColor: {r: 1, g: 0.6416, b: 0, a: 0.19607843}
   planetMass: 300000
   semiMajorAxis: 0
   eccentricity: 0
@@ -24,3 +24,19 @@ MonoBehaviour:
   longitudeOfAcendingNode: 0
   argumentOfPeriapsis: 0
   meanLongitude: 0
+  planetInfo: 'The Sun is the Solar System''s star and by far its most massive component.
+    Its large mass (332,900 Earth masses), which comprises 99.86% of all the mass
+    in the Solar System, produces temperatures and densities in its core high enough
+    to sustain nuclear fusion of hydrogen into helium. This releases an enormous
+    amount of energy, mostly radiated into space as electromagnetic radiation peaking
+    in visible light.
+
+    
+
+    Because the Sun fuses hydrogen into helium, it
+    is a main-sequence star. More specifically, it is a G2-type main-sequence star,
+    where the type designation refers to its effective temperature. Hotter main-sequence
+    stars are more luminous. The Sun''s temperature is intermediate between that
+    of the hottest stars and that of the coolest stars. Stars brighter and hotter
+    than the Sun are rare, whereas substantially dimmer and cooler stars, known as
+    red dwarfs, make up about 75% of the stars in the Milky Way.'

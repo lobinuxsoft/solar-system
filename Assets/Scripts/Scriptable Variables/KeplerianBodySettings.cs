@@ -31,6 +31,10 @@ public class KeplerianBodySettings : BaseScriptableVariable
     [Tooltip("Is the ecliptic longitude at which an orbiting body could be found if its orbit were circular and free of perturbations")]
     [SerializeField] float meanLongitude = 0;
 
+    [Space]
+    [Header("Planet Info for show")]
+    [SerializeField, TextArea] string planetInfo = "...A planet...";
+
     public Material PlanetMaterial => planetMaterial;
     public float PlanetRadius => planetRadius;
     public Color OrbitColor => orbitColor;
@@ -41,6 +45,7 @@ public class KeplerianBodySettings : BaseScriptableVariable
     public float LongitudeOfAcendingNode => longitudeOfAcendingNode;
     public float ArgumenOfPeriapsis => argumentOfPeriapsis;
     public float MeanLongitude => meanLongitude;
+    public string PlanetInfo => planetInfo;
 
     public override void SaveData()
     {
@@ -53,7 +58,8 @@ public class KeplerianBodySettings : BaseScriptableVariable
             inclination = this.inclination,
             longitudeOfAcendingNode = this.longitudeOfAcendingNode,
             argumentOfPeriapsis = this.argumentOfPeriapsis,
-            meanLongitude = this.meanLongitude
+            meanLongitude = this.meanLongitude,
+            planteInfo = this.planetInfo
         };
 
         SaveData<KeplerianBodySettingsStruct>(temp);
@@ -71,6 +77,7 @@ public class KeplerianBodySettings : BaseScriptableVariable
         longitudeOfAcendingNode = temp.longitudeOfAcendingNode;
         argumentOfPeriapsis = temp.argumentOfPeriapsis;
         meanLongitude = temp.meanLongitude;
+        planetInfo = temp.planteInfo;
     }
 
     public override void EraseSaveFile()
@@ -85,6 +92,7 @@ public class KeplerianBodySettings : BaseScriptableVariable
         longitudeOfAcendingNode = 0;
         argumentOfPeriapsis = 0;
         meanLongitude = 0;
+        planetInfo = "...A Plante...";
     }
 }
 
@@ -98,4 +106,5 @@ struct KeplerianBodySettingsStruct
     public float longitudeOfAcendingNode;
     public float argumentOfPeriapsis;
     public float meanLongitude;
+    public string planteInfo;
 }

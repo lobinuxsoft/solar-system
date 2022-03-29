@@ -16,7 +16,7 @@ MonoBehaviour:
   fileExtention: .save
   planetMaterial: {fileID: 2100000, guid: a5a703eb410712f4e9cd1772990b341d, type: 2}
   planetRadius: 2.439
-  orbitColor: {r: 0.36320752, g: 0.792015, b: 1, a: 1}
+  orbitColor: {r: 0.36320752, g: 0.792015, b: 1, a: 0.19607843}
   planetMass: 0.06
   semiMajorAxis: 387
   eccentricity: 0.206
@@ -24,3 +24,11 @@ MonoBehaviour:
   longitudeOfAcendingNode: 0
   argumentOfPeriapsis: 0
   meanLongitude: 0
+  planetInfo: Mercury is the closest planet to the Sun. The smallest planet in the
+    Solar System, Mercury has no natural satellites. Besides impact craters, its
+    only known geological features are lobed ridges or rupes that were probably produced
+    by a period of contraction early in its history. Mercury's very tenuous atmosphere
+    consists of atoms blasted off its surface by the solar wind. Its relatively large
+    iron core and thin mantle have not yet been adequately explained. Hypotheses
+    include that its outer layers were stripped off by a giant impact, or that it
+    was prevented from fully accreting by the young Sun's energy.
