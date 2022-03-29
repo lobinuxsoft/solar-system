@@ -21,6 +21,8 @@ public class UniverseSettings : BaseScriptableVariable
         }
     }
 
+    public float MaxTimeScale => maxTimescale;
+
     public float GravitationalConstant => gravitationalConstant;
     public float PhysicsTimeStep => physicsTimeStep;
 

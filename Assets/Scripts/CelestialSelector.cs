@@ -6,14 +6,32 @@ using UnityEngine.UI;
 
 public class CelestialSelector : MonoBehaviour
 {
+    [SerializeField] UniverseSettings settings;
     [SerializeField] Transform celestialsContainer;
     [SerializeField] Button buttonPref;
     [SerializeField] Transform buttonContainer;
     [SerializeField] CinemachineVirtualCamera defaultVCam;
+    [SerializeField] AnimationCurve orbitSpeed;
 
     public UnityEvent<int> onPlanetSelected;
 
     CinemachineVirtualCamera vcam;
+    CinemachineOrbitalTransposer orbitalTransposer;
+
+    private void Awake()
+    {
+        vcam = defaultVCam;
+        orbitalTransposer = vcam.GetCinemachineComponent<CinemachineOrbitalTransposer>();
+        orbitalTransposer.m_XAxis.m_MaxSpeed = 0;
+    }
+
+    private void Update()
+    {
+        if (orbitalTransposer)
+        {
+            orbitalTransposer.m_XAxis.m_MaxSpeed = Input.GetMouseButton(1) ? orbitSpeed.Evaluate(settings.TimeScaleSimulation / settings.MaxTimeScale) : 0;
+        }
+    }
 
     public void CreateSelector()
     {
@@ -55,6 +73,8 @@ public class CelestialSelector : MonoBehaviour
 
             vcam = tempCam;
         }
+
+        if (vcam) orbitalTransposer = vcam.GetCinemachineComponent<CinemachineOrbitalTransposer>();
 
         onPlanetSelected?.Invoke(index);
     }

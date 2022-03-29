@@ -1945,11 +1945,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d4743e2f82866040b4eda03a9540fde, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  settings: {fileID: 11400000, guid: 7fe208bde54c5aa44af94b9eaac25031, type: 2}
   celestialsContainer: {fileID: 2124447328}
   buttonPref: {fileID: 6447243175603151476, guid: f5654a3b30d472c48beef732e3836d8e,
     type: 3}
   buttonContainer: {fileID: 120337277}
   defaultVCam: {fileID: 634167836}
+  orbitSpeed:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 10
+      inSlope: -6.25
+      outSlope: -6.25
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.8
+      value: 5
+      inSlope: -6.25
+      outSlope: -6.25
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
   onPlanetSelected:
     m_PersistentCalls:
       m_Calls:
