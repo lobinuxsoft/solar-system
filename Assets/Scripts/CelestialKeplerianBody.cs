@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using Cinemachine;
 
 #if UNITY_EDITOR
 using UnityEditor;
@@ -9,6 +10,11 @@ using UnityEditor;
 public partial class CelestialKeplerianBody : MonoBehaviour
 {
     [SerializeField] UniverseSettings settings;
+    [Space]
+
+    [Header("Orbital Camera")]
+    [SerializeField] CinemachineVirtualCamera virtualCamera;
+    CinemachineOrbitalTransposer orbitalCam;
     [Space]
 
     [Header("Keplerian data for orbit calculation")]
@@ -29,22 +35,38 @@ public partial class CelestialKeplerianBody : MonoBehaviour
 
     Rigidbody body = default;
     MeshRenderer meshRenderer = default;
+    TrailRenderer trailRenderer = default;
 
-    void Awake()
+    public CinemachineVirtualCamera VirtualCamera => virtualCamera;
+
+    private void Start()
     {
+        orbitalCam = virtualCamera.GetCinemachineComponent<CinemachineOrbitalTransposer>();
+        orbitalCam.m_FollowOffset = new Vector3(0, keplerianSettings.PlanetRadius * .4f, keplerianSettings.PlanetRadius * 4);
+    }
+
+    public void SetKeplerianBodySettings(KeplerianBodySettings kbs, Rigidbody bodyRef = null)
+    {
+        keplerianSettings = kbs;
+
         body = GetComponent<Rigidbody>();
         body.useGravity = false;
 
         meshRenderer = GetComponent<MeshRenderer>();
+        trailRenderer = GetComponent<TrailRenderer>();
 
-        if (keplerianSettings)
-        {
-            transform.localScale = Vector3.one * keplerianSettings.PlanetRadius;
-            meshRenderer.material = keplerianSettings.PlanetMaterial;
-            body.mass = keplerianSettings.PlanetMass;
-        }
+        name = keplerianSettings.name;
+        transform.localScale = Vector3.one * keplerianSettings.PlanetRadius;
+        meshRenderer.material = keplerianSettings.PlanetMaterial;
+        trailRenderer.startColor = keplerianSettings.OrbitColor;
+        trailRenderer.endColor = keplerianSettings.OrbitColor;
+        trailRenderer.startWidth = keplerianSettings.PlanetRadius * .6f;
+        trailRenderer.endWidth = 0;
+        body.mass = keplerianSettings.PlanetMass;
 
-        if(referenceBody) CalculateSemiConstants();
+        referenceBody = bodyRef;
+
+        if (referenceBody) CalculateSemiConstants();
     }
 
     /// <summary>
@@ -164,17 +186,24 @@ public partial class CelestialKeplerianBody : MonoBehaviour
             }
         }
 
-        Handles.color = orbitColor;
+        Handles.color = keplerianSettings.OrbitColor;
+        Handles.Label(transform.position + Vector3.up * keplerianSettings.PlanetRadius, name);
         Handles.DrawAAPolyLine(orbitalPoints.ToArray());
 
         if (!Application.isPlaying)
         {
             if (!body) body = GetComponent<Rigidbody>();
-            if (!meshRenderer) meshRenderer = GetComponent<MeshRenderer>(); 
+            if (!meshRenderer) meshRenderer = GetComponent<MeshRenderer>();
+            if (!trailRenderer) trailRenderer = GetComponent<TrailRenderer>();
 
+            name = keplerianSettings.name;
             transform.position = orbitalPoints[0];
             transform.localScale = Vector3.one * keplerianSettings.PlanetRadius;
             meshRenderer.material = keplerianSettings.PlanetMaterial;
+            trailRenderer.startColor = keplerianSettings.OrbitColor;
+            trailRenderer.endColor = keplerianSettings.OrbitColor;
+            trailRenderer.startWidth = keplerianSettings.PlanetRadius * .6f;
+            trailRenderer.endWidth = 0;
             body.mass = keplerianSettings.PlanetMass;
         }
     }

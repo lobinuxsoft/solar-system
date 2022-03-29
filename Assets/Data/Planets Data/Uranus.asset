@@ -14,11 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   redeableFile: 1
   fileExtention: .save
-  planetRadius: 0
   planetMaterial: {fileID: 0}
-  semiMajorAxis: 200
-  eccentricity: 0
-  inclination: 0
+  planetRadius: 25.4
+  orbitColor: {r: 0.3820755, g: 1, b: 0.7815717, a: 1}
+  planetMass: 14.6
+  semiMajorAxis: 19182
+  eccentricity: 0.047
+  inclination: 0.008
   longitudeOfAcendingNode: 0
   argumentOfPeriapsis: 0
   meanLongitude: 0

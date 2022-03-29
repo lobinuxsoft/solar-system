@@ -7,6 +7,7 @@ public class KeplerianBodySettings : BaseScriptableVariable
     [Header("Standar Settings")]
     [SerializeField] Material planetMaterial;
     [SerializeField] float planetRadius = 1;
+    [SerializeField] Color orbitColor = Color.white;
     [SerializeField] float planetMass = 1;
 
     [Space(10)]
@@ -32,6 +33,7 @@ public class KeplerianBodySettings : BaseScriptableVariable
 
     public Material PlanetMaterial => planetMaterial;
     public float PlanetRadius => planetRadius;
+    public Color OrbitColor => orbitColor;
     public float PlanetMass => planetMass;
     public float SemiMajorAxis => semiMajorAxis;
     public float Eccentricity => eccentricity;
